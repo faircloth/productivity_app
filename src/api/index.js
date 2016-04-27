@@ -6,6 +6,8 @@ var router = express.Router();
 var Note = require('../models/note');
 
 // API routes
+
+// GET // Request all notes
 router.get('/notes', (req, res) => {
   Note.find({}, function(err, notes) {
     if (err) {
@@ -16,6 +18,12 @@ router.get('/notes', (req, res) => {
     }
   });
 });
+
+// POST // Create a new note
+
+// router.post('/notes', (req, res) => {
+//   console.log('A new note will be created');
+// });
 
 
 // export the router

@@ -17,6 +17,16 @@ var _moment2 = _interopRequireDefault(_moment);
 
 console.log('Hello, World');
 
+var url = 'https://safe-inlet-86596.herokuapp.com/api/notes';
+
+// testing it with jquery
+_jquery2['default'].getJSON(url).then(function (res) {
+  var notes = res.notes;
+  notes.forEach(function (note) {
+    (0, _jquery2['default'])('.notes').append('\n      <div class="note">\n        <p class="title">' + note.title + '</p>\n      </div>\n      ');
+  });
+});
+
 },{"jquery":2,"moment":3,"underscore":4}],2:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.2.3
