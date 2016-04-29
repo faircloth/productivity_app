@@ -19,6 +19,20 @@ router.get('/notes', (req, res) => {
   });
 });
 
+
+// GET // Request a specific note
+router.get('/notes/:_id', (req, res) => {
+  var id = req.params._id;
+
+  Note.findOne({'_id': id}, function(err, note) {
+    if (err) {
+      return res.status(500).json({message: err.message});
+    } else {
+      res.json( {note: note});
+    }
+  });
+});
+
 // POST // Create a new note
 
 // router.post('/notes', (req, res) => {

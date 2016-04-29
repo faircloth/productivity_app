@@ -1,20 +1,12 @@
 import $ from 'jquery';
-import _ from 'underscore';
-import moment from 'moment';
+import angular from 'angular';
 
-console.log('Hello, World');
+// import app modules
+import './app-core/index';
+import './app-notes/index';
 
-let url = 'https://safe-inlet-86596.herokuapp.com/api/notes';
+angular
+  .module('app', ['app.core', 'app.notes'])
+;
 
 
-// testing it with jquery
-$.getJSON(url).then((res)=> {
-  var notes = res.notes;
-  notes.forEach( (note) => {
-    $('.notes').append(`
-      <div class="note">
-        <p class="title">${note.title}</p>
-      </div>
-      `)
-  });
-});

@@ -1,16 +1,29 @@
 // Put any @imports here
 // See Readme for a list of supported ones
 
+@import "../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
 body {
   background: #e2ebf3;
-  padding: 55px;
+}
+
+.content {
+  margin: 40px auto;
+  padding: 30px;
 }
 
 .note {
   border: 2px solid black;
-  margin: 20px;
+  margin: 40px;
   padding: 20px;
   border-radius: 4px;
   background-color: white;
-  max-width: 200px;
+  max-width: 400px;
 }
+
+
+
+@import './navbar.scss';
+
+
+@import './fonts.scss';

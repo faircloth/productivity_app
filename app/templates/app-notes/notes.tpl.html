@@ -1,0 +1,5 @@
+
+<div class="note" ng-repeat="note in vm.notes" ng-click="vm.goToNote(note._id)">
+  <h2>{{ note.title }}</h2>
+  <p> {{ note.topic }}</p>
+</div>
