@@ -143,14 +143,26 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var ViewOneNoteController = function ViewOneNoteController($scope, $stateParams) {
+var ViewOneNoteController = function ViewOneNoteController($scope, $stateParams, NotesService) {
 
   var noteId = $stateParams._id;
 
-  console.log('note id: ', noteId);
+  var vm = this;
+
+  // view model functions
+
+  // on page load
+  getNote(noteId);
+
+  // *** FUNCTION DEFINITIONS ***
+  function getNote(id) {
+    NotesService.getOneNote(id).then(function (res) {
+      vm.note = res.data.note;
+    });
+  }
 };
 
-ViewOneNoteController.$inject = ['$scope', '$stateParams'];
+ViewOneNoteController.$inject = ['$scope', '$stateParams', 'NotesService'];
 
 exports['default'] = ViewOneNoteController;
 module.exports = exports['default'];
@@ -210,7 +222,7 @@ var NotesService = function NotesService($state, $http, HEROKU) {
   }
 
   function getOneNote(id) {
-    // return $http.get(apiURL + 'notes/' + id);
+    return $http.get(apiURL + 'notes/' + id);
   }
 };
 

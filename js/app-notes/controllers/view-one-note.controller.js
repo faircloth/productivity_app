@@ -1,11 +1,25 @@
-let ViewOneNoteController = function($scope, $stateParams) {
+let ViewOneNoteController = function($scope, $stateParams, NotesService) {
   
   let noteId = $stateParams._id;
 
-  console.log('note id: ', noteId);
+  let vm = this;
+
+
+  // view model functions
+
+
+  // on page load
+  getNote(noteId);
+
+  // *** FUNCTION DEFINITIONS ***
+  function getNote (id) {
+    NotesService.getOneNote(id).then( (res) => {
+      vm.note = res.data.note;
+    });
+  }
 
 };
 
-ViewOneNoteController.$inject = ['$scope', '$stateParams'];
+ViewOneNoteController.$inject = ['$scope', '$stateParams', 'NotesService'];
 
 export default ViewOneNoteController;

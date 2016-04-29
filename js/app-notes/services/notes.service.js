@@ -15,7 +15,7 @@ let NotesService = function($state, $http, HEROKU) {
   }
 
   function getOneNote(id) {
-    // return $http.get(apiURL + 'notes/' + id);
+    return $http.get(apiURL + 'notes/' + id);
   }
 
 
