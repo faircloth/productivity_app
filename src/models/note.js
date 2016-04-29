@@ -5,7 +5,8 @@ var mongoose = require('mongoose');
 // create a new schema
 var noteSchema = new mongoose.Schema({
   title:      String,
-  topic:      String
+  topic:      String,
+  content:    String
 });
 
 // create a model using your schema
