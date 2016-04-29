@@ -16,7 +16,7 @@ var notes = [
 ];
 
 notes.forEach(function(note, index) {
-  Note.find({'title': note.title, 'topic': note.topic}, function(err, notes) {
+  Note.find({'title': note.title, 'topic': note.topic, 'content': note.content}, function(err, notes) {
     if (!err && !notes.length) {
       Note.create({title: note.title, topic: note.topic, content: note.content });
     }
