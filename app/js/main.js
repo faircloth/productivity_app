@@ -158,6 +158,7 @@ var ViewOneNoteController = function ViewOneNoteController($scope, $stateParams,
   function getNote(id) {
     NotesService.getOneNote(id).then(function (res) {
       vm.note = res.data.note;
+      console.log(vm.note);
     });
   }
 };

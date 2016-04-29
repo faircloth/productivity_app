@@ -15,6 +15,7 @@ let ViewOneNoteController = function($scope, $stateParams, NotesService) {
   function getNote (id) {
     NotesService.getOneNote(id).then( (res) => {
       vm.note = res.data.note;
+      console.log(vm.note);
     });
   }
 
