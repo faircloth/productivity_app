@@ -43,6 +43,18 @@ let config = function($urlRouterProvider, $stateProvider) {
           templateUrl: 'templates/app-notes/note.tpl.html'
         }
       }
+    })
+    .state('root.fangraphs', {
+      url: '/fangraphs',
+      views: {
+        navbar: {
+          templateUrl: 'templates/app-layout/navbar.tpl.html'
+        },
+        content: {
+          controller: 'MainFangraphsController as vm',
+          templateUrl: 'templates/app-fangraphs/main-fangraphs.tpl.html'
+        }
+      }
     });
 
 };

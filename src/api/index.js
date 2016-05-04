@@ -45,19 +45,26 @@ router.get('/notes/:_id', (req, res) => {
 
 function getData (headers, html) {
   console.log('headers in get data function:   ', headers);
-  let $ = html;
-  let rows = $('#SeasonStats1_dgSeason2').children('table').children('tbody').children('.rgRow');
+  let rows = html('#SeasonStats1_dgSeason2').children('table').children('tbody').children('.rgRow');
   console.log('rows:   ', typeof rows);
   console.log('length:   ', rows.length);
   // 0 gives year, 1 gives team
   let rowNum = '22';
 
-  let year  = rows['22'].children[1].children[0].children[0].data;
-  let team  = rows['22'].children[2].children[0].children[0].data;
+  let data = {
+    year: '',
+    team: '',
+  };
 
-  let Kper9 = rows['22'].children[3].children[0].data;
+  data.year  = rows['22'].children[1].children[0].children[0].data;
+  data.team  = rows['22'].children[2].children[0].children[0].data;
 
-  console.log('k per 9: ', Kper9);
+  for (var i = 0; i < headers.length; i++) {
+    let name = headers[i];
+    data[name] = rows['22'].children[i + 3].children[0].data;
+  };
+  // data.Kper9 = rows['22'].children[3].children[0].data;
+  console.log('data: ', data);
   // console.log('rows:   ', rows);
 }
 

@@ -7,7 +7,7 @@ Object.defineProperty(exports, '__esModule', {
 var config = function config($urlRouterProvider, $stateProvider) {
 
   // if route not detected, send to root
-  $urlRouterProvider.otherwise('/');
+  // $urlRouterProvider.otherwise('/');
 
   // front-end routes
   $stateProvider.state('root', {
@@ -43,6 +43,17 @@ var config = function config($urlRouterProvider, $stateProvider) {
       content: {
         controller: 'ViewOneNoteController as vm',
         templateUrl: 'templates/app-notes/note.tpl.html'
+      }
+    }
+  }).state('root.fangraphs', {
+    url: '/fangraphs',
+    views: {
+      navbar: {
+        templateUrl: 'templates/app-layout/navbar.tpl.html'
+      },
+      content: {
+        controller: 'MainFangraphsController as vm',
+        templateUrl: 'templates/app-fangraphs/main-fangraphs.tpl.html'
       }
     }
   });
@@ -94,7 +105,93 @@ var _herokuConstant2 = _interopRequireDefault(_herokuConstant);
 // instantiate angular app
 _angular2['default'].module('app.core', ['ui.router', 'ngCookies']).constant('HEROKU', _herokuConstant2['default']).config(_config2['default']);
 
-},{"./config":1,"./heroku.constant":2,"angular":13,"angular-cookies":10,"angular-ui-router":11}],4:[function(require,module,exports){
+},{"./config":1,"./heroku.constant":2,"angular":16,"angular-cookies":13,"angular-ui-router":14}],4:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var MainFangraphsController = function MainFangraphsController($scope, FangraphsService) {
+
+  console.log('hello fangraphs');
+
+  var vm = this;
+
+  // on page load
+
+  getData();
+
+  // function definitions
+  function getData() {
+    FangraphsService.getData().then(function (res) {
+      console.log(res);
+    });
+  }
+};
+
+MainFangraphsController.$inject = ['$scope', 'FangraphsService'];
+
+exports['default'] = MainFangraphsController;
+module.exports = exports['default'];
+
+},{}],5:[function(require,module,exports){
+'use strict';
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _angular = require('angular');
+
+var _angular2 = _interopRequireDefault(_angular);
+
+// controllers
+
+var _controllersMainController = require('./controllers/main.controller');
+
+var _controllersMainController2 = _interopRequireDefault(_controllersMainController);
+
+// services
+
+var _servicesFangraphsService = require('./services/fangraphs.service');
+
+var _servicesFangraphsService2 = _interopRequireDefault(_servicesFangraphsService);
+
+_angular2['default'].module('app.fangraphs', [])
+
+// controllers
+.controller('MainFangraphsController', _controllersMainController2['default'])
+
+// services
+.service('FangraphsService', _servicesFangraphsService2['default']);
+
+},{"./controllers/main.controller":4,"./services/fangraphs.service":6,"angular":16}],6:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var FangraphsService = function FangraphsService($state, HEROKU, $http) {
+
+  console.log('fangraphs service');
+
+  // server info
+  var apiURL = HEROKU.URL;
+  console.log('apiURL:  ', apiURL);
+
+  // service functions
+  this.getData = getData;
+
+  // function definitions
+  function getData() {
+    return $http.get(apiURL + 'scrape');
+  }
+};
+
+FangraphsService.$inject = ['$state', 'HEROKU', '$http'];
+
+exports['default'] = FangraphsService;
+module.exports = exports['default'];
+
+},{}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -137,7 +234,7 @@ ViewNotesController.$inject = ['$scope', 'NotesService', '$state'];
 exports['default'] = ViewNotesController;
 module.exports = exports['default'];
 
-},{"jquery":14}],5:[function(require,module,exports){
+},{"jquery":17}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -168,7 +265,7 @@ ViewOneNoteController.$inject = ['$scope', '$stateParams', 'NotesService'];
 exports['default'] = ViewOneNoteController;
 module.exports = exports['default'];
 
-},{}],6:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -201,7 +298,7 @@ _angular2['default'].module('app.notes', [])
 // services
 .service('NotesService', _servicesNotesService2['default']);
 
-},{"./controllers/view-notes.controller":4,"./controllers/view-one-note.controller":5,"./services/notes.service":7,"angular":13}],7:[function(require,module,exports){
+},{"./controllers/view-notes.controller":7,"./controllers/view-one-note.controller":8,"./services/notes.service":10,"angular":16}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -232,7 +329,7 @@ NotesService.$inject = ['$state', '$http', 'HEROKU'];
 exports['default'] = NotesService;
 module.exports = exports['default'];
 
-},{}],8:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -251,9 +348,11 @@ require('./app-core/index');
 
 require('./app-notes/index');
 
-_angular2['default'].module('app', ['app.core', 'app.notes']);
+require('./app-fangraphs/index');
 
-},{"./app-core/index":3,"./app-notes/index":6,"angular":13,"jquery":14}],9:[function(require,module,exports){
+_angular2['default'].module('app', ['app.core', 'app.notes', 'app.fangraphs']);
+
+},{"./app-core/index":3,"./app-fangraphs/index":5,"./app-notes/index":9,"angular":16,"jquery":17}],12:[function(require,module,exports){
 /**
  * @license AngularJS v1.5.5
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -577,11 +676,11 @@ angular.module('ngCookies').provider('$$cookieWriter', function $$CookieWriterPr
 
 })(window, window.angular);
 
-},{}],10:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 require('./angular-cookies');
 module.exports = 'ngCookies';
 
-},{"./angular-cookies":9}],11:[function(require,module,exports){
+},{"./angular-cookies":12}],14:[function(require,module,exports){
 /**
  * State-based routing for AngularJS
  * @version v0.2.18
@@ -5121,7 +5220,7 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
-},{}],12:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 /**
  * @license AngularJS v1.5.5
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -35990,11 +36089,11 @@ $provide.value("$locale", {
 })(window);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],13:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":12}],14:[function(require,module,exports){
+},{"./angular":15}],17:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.2.3
  * http://jquery.com/
@@ -45838,7 +45937,7 @@ if ( !noGlobal ) {
 return jQuery;
 }));
 
-},{}]},{},[8])
+},{}]},{},[11])
 
 
 //# sourceMappingURL=main.js.map

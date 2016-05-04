@@ -5838,16 +5838,17 @@ body {
 .navbar-fixed-top {
   background-color: black;
   color: white;
-  display: block;
-  height: 50px; }
+  display: block; }
   .navbar-fixed-top ul {
     display: block;
+    height: 50px;
     width: 90%;
-    margin: 0 auto;
+    margin: 10px auto;
     list-style-type: none; }
     .navbar-fixed-top ul li {
       display: inline-block;
-      margin: 10px 20px; }
+      height: 50px;
+      margin: 15px 20px; }
       .navbar-fixed-top ul li a {
         font-size: 1.0em;
         color: white; }
