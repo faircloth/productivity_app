@@ -45,39 +45,61 @@ router.get('/notes/:_id', (req, res) => {
 
 function getData (headers, html) {
   console.log('headers in get data function:   ', headers);
-  let rows = html('#SeasonStats1_dgSeason2').children('table').children('tbody').children('.rgRow');
-  console.log('rows:   ', typeof rows);
-  console.log('length:   ', rows.length);
-  // 0 gives year, 1 gives team
-  let rowNum = '22';
+  let rows = html('#SeasonStats1_dgSeason2').children('table').children('tbody').children('.grid_minors_show, .rgAltRow, .grid_projectionsin_show');  
+  
+  let response = [];
 
-  let data = {
-    year: '',
-    team: '',
+
+  for (var i = 0; i < rows.length - 1; i++) {
+    
+    let data = {};
+
+    let rowNum = i;
+    console.log('rowNum', rowNum);
+    
+    if (rows[rowNum].children[1].children[0].children) {
+      data.year  = rows[rowNum].children[1].children[0].children[0].data;   
+      data.team  = rows[rowNum].children[2].children[0].data;
+      // data.team  = rows[rowNum].children[2].children[0].children[0].data;
+    } else {
+      data.year  = rows[rowNum].children[1].children[0].data;
+      data.team  = rows[rowNum].children[2].children[0].children[0].data;
+    }
+    
+    for (var x = 0; x < headers.length; x++) {
+      let name = headers[x];
+      if (x === headers.length - 1) {
+        data[name] = rows[rowNum].children[x + 5].children[0].data;
+      } else {
+        data[name] = rows[rowNum].children[x + 3].children[0].data;
+      }
+    };
+    response.push(data);
   };
 
-  data.year  = rows['22'].children[1].children[0].children[0].data;
-  data.team  = rows['22'].children[2].children[0].children[0].data;
+  console.log(response);
+  return response;
 
-  for (var i = 0; i < headers.length; i++) {
-    let name = headers[i];
-    data[name] = rows['22'].children[i + 3].children[0].data;
-  };
-  // data.Kper9 = rows['22'].children[3].children[0].data;
-  console.log('data: ', data);
-  return data;
-  // console.log('rows:   ', rows);
 }
+
+
 
 
 router.get('/scrape', function(req, res){
     // The URL we will scrape from - in our example Anchorman 2.
 
-    var url = 'http://www.fangraphs.com/statss.aspx?playerid=6345&position=P/';
+    // var playerId = '1890'; // matt moore
+    var playerId = '4153'; //jake arrieta
+
+    // var playerId = '6345'; // archer
+    var position = 'P';
+    var url = 'http://www.fangraphs.com/statss.aspx?playerid=' + playerId + '&position=' + position + '/';
 
     // todo: build a data object
 
     request(url, function(error, response, html){
+
+        console.log(url);
 
         if(!error){
             // Next, we'll utilize the cheerio library on the returned html which will essentially give us jQuery functionality

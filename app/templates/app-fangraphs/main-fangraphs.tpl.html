@@ -1,1 +1,7 @@
 <h2>Fangraphs main page</h2>
+
+<div ng-show="vm.loaded" ng-repeat="row in vm.rows">
+  <h2>{{ row.year }}</h2>
+  <h2>{{ row.team }}</h2>
+  <h2>{{ row[K/9] }}</h2>
+</div>

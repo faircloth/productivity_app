@@ -124,7 +124,10 @@ var MainFangraphsController = function MainFangraphsController($scope, Fangraphs
   // function definitions
   function getData() {
     FangraphsService.getData().then(function (res) {
-      console.log(res);
+      // console.log(res);
+      vm.data = res.data.data;
+      console.log(vm.data);
+      vm.loaded = true;
     });
   }
 };
