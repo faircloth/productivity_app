@@ -45,10 +45,10 @@ router.get('/notes/:_id', (req, res) => {
 
 function getData (headers, html) {
   
-  let rows = html('#SeasonStats1_dgSeason2').children('table').children('tbody').children('.grid_minors_show, .rgAltRow, .grid_projectionsin_show');  
+  let rows = html('#SeasonStats1_dgSeason2').children('table').children('tbody').children('.grid_minors_show, .rgAltRow, .grid_projectionsin_show, .grid_total');  
   let response = [];
 
-  for (var i = 0; i < rows.length - 1; i++) {
+  for (var i = 0; i < rows.length; i++) {
     
     // empty obj at the start of each iteration
     let data = {};
