@@ -12,18 +12,6 @@ body {
   padding: 30px;
 }
 
-.note {
-  border: 2px solid black;
-  margin: 40px;
-  padding: 20px;
-  border-radius: 4px;
-  background-color: white;
-  max-width: 400px;
-}
-
-
-
+@import './notes/index.scss';
 @import './navbar.scss';
-
-
 @import './fonts.scss';

@@ -2,17 +2,18 @@
   background-color: black;
   color: white;
   display: block;
-  height: 50px;
 
   ul {
     display: block;
+    height: 50px;
     width: 90%;
-    margin: 0 auto;
+    margin: 10px auto;
     list-style-type: none;
 
     li {
       display: inline-block;
-      margin: 10px 20px;
+      height: 50px;
+      margin: 15px 20px;
 
       a {
         font-size: 1.0em;

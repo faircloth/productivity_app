@@ -1,5 +1,12 @@
+<div>
+  <p>Stats on notes</p>
+</div>
 
-<div class="note" ng-repeat="note in vm.notes" ng-click="vm.goToNote(note._id)">
+<h1>Filters</h1>
+
+
+<div class="notes" ng-repeat="note in vm.notes" ng-click="vm.goToNote(note._id)">
   <h2>{{ note.title }}</h2>
-  <p> {{ note.topic }}</p>
+  <button> {{ note.topic }}</button>
+  <p> {{ note.content}} </p>
 </div>
