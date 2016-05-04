@@ -44,28 +44,33 @@ router.get('/notes/:_id', (req, res) => {
 
 
 function getData (headers, html) {
-  console.log('headers in get data function:   ', headers);
-  let rows = html('#SeasonStats1_dgSeason2').children('table').children('tbody').children('.grid_minors_show, .rgAltRow, .grid_projectionsin_show');  
   
+  let rows = html('#SeasonStats1_dgSeason2').children('table').children('tbody').children('.grid_minors_show, .rgAltRow, .grid_projectionsin_show');  
   let response = [];
-
 
   for (var i = 0; i < rows.length - 1; i++) {
     
+    // empty obj at the start of each iteration
     let data = {};
-
     let rowNum = i;
     console.log('rowNum', rowNum);
     
+    // control for year variances
     if (rows[rowNum].children[1].children[0].children) {
-      data.year  = rows[rowNum].children[1].children[0].children[0].data;   
-      data.team  = rows[rowNum].children[2].children[0].data;
-      // data.team  = rows[rowNum].children[2].children[0].children[0].data;
+      data.year  = rows[rowNum].children[1].children[0].children[0].data;       
     } else {
       data.year  = rows[rowNum].children[1].children[0].data;
+      // data.team  = rows[rowNum].children[2].children[0].children[0].data;
+    }
+
+    // control for team variances
+    if (rows[rowNum].children[2].children[0].children) {
       data.team  = rows[rowNum].children[2].children[0].children[0].data;
+    } else {
+      data.team  = rows[rowNum].children[2].children[0].data;
     }
     
+    // get all data for each year and team
     for (var x = 0; x < headers.length; x++) {
       let name = headers[x];
       if (x === headers.length - 1) {
@@ -77,9 +82,7 @@ function getData (headers, html) {
     response.push(data);
   };
 
-  console.log(response);
   return response;
-
 }
 
 

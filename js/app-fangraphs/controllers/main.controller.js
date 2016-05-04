@@ -12,8 +12,8 @@ let MainFangraphsController = function($scope, FangraphsService) {
   function getData () {
     FangraphsService.getData().then( (res) => {
       // console.log(res);
-      vm.data = res.data.data;
-      console.log(vm.data);
+      vm.rows = res.data.data;
+      console.log(vm.rows);
       vm.loaded = true;
     });
   }
