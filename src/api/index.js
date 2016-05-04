@@ -73,11 +73,7 @@ function getData (headers, html) {
     // get all data for each year and team
     for (var x = 0; x < headers.length; x++) {
       let name = headers[x];
-      if (x === headers.length - 1) {
-        data[name] = rows[rowNum].children[x + 5].children[0].data;
-      } else {
-        data[name] = rows[rowNum].children[x + 3].children[0].data;
-      }
+      data[name] = rows[rowNum].children[x + 3].children[0].data;
     };
     response.push(data);
   };
@@ -110,7 +106,7 @@ router.get('/scrape', function(req, res){
             var $ = cheerio.load(html);
 
             let headers = $('#SeasonStats1_dgSeason2').children('table').children('thead').children('tr').children('th');
-            let headerNums = ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '15'];
+            let headerNums = ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12','13', '14', '15'];
             let headerNames = [];
 
             headerNums.forEach( (num) => {

@@ -125,8 +125,8 @@ var MainFangraphsController = function MainFangraphsController($scope, Fangraphs
   function getData() {
     FangraphsService.getData().then(function (res) {
       // console.log(res);
-      vm.data = res.data.data;
-      console.log(vm.data);
+      vm.rows = res.data.data;
+      console.log(vm.rows);
       vm.loaded = true;
     });
   }

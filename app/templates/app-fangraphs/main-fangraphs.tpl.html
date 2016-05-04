@@ -1,7 +1,24 @@
 <h2>Fangraphs main page</h2>
 
-<div ng-show="vm.loaded" ng-repeat="row in vm.rows">
+<!-- <div ng-show="vm.loaded" ng-repeat="row in vm.rows">
   <h2>{{ row.year }}</h2>
   <h2>{{ row.team }}</h2>
   <h2>{{ row[K/9] }}</h2>
+</div> -->
+
+
+<div ng-show="vm.loaded" class="table_container">
+  <table class="table table-hover table-responsive">
+    <tr class="header_row">
+      <td>Year</td>
+      <td>Team</td>
+      <td>FIP</td>
+    </tr>
+    <tr class="data_row" ng-repeat="row in vm.rows">
+      <td>{{ row['year'] }}</td>
+      <td>{{ row['team'] }}</td>
+      <td>{{ row['FIP'] }}</td>
+    </tr>
+  </table>
 </div>
+

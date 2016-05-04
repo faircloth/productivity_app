@@ -12,6 +12,12 @@ body {
   padding: 30px;
 }
 
+
+// folder imports
 @import './notes/index.scss';
+@import './fangraphs/index.scss';
+
+
+// main layout styles
 @import './navbar.scss';
 @import './fonts.scss';
