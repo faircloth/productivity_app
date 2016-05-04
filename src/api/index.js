@@ -65,6 +65,7 @@ function getData (headers, html) {
   };
   // data.Kper9 = rows['22'].children[3].children[0].data;
   console.log('data: ', data);
+  return data;
   // console.log('rows:   ', rows);
 }
 
@@ -93,7 +94,9 @@ router.get('/scrape', function(req, res){
             });
 
             setTimeout( () => { 
-              getData(headerNames, $);
+              getData(headerNames, $).then( (data) => {
+                response.json( {data: data});
+              });
             }, 1000);
 
 
