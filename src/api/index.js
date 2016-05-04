@@ -94,9 +94,10 @@ router.get('/scrape', function(req, res){
             });
 
             setTimeout( () => { 
-              getData(headerNames, $).then( (data) => {
-                response.json( {data: data});
-              });
+               let data = getData(headerNames, $);
+
+               res.json( {data: data});
+
             }, 1000);
 
 
