@@ -1,23 +1,54 @@
-<h2>Fangraphs main page</h2>
+<form class="form-inline add-player">
+  <h2>Add a player</h2>
+  <div class="form-group">
+    <div class="input-group">
+      <input  placeholder="First name"/>
+      <input  placeholder="Last name"/>
+      <input  placeholder="FanGraphs ID"/>
+      <select>
+        <option>P</option>
+        <option>SS</option>
+      </select>
+    </div>
+    <button class="form-control btn btn-success">Add</button>
+  </div>
+</form>
 
-<!-- <div ng-show="vm.loaded" ng-repeat="row in vm.rows">
-  <h2>{{ row.year }}</h2>
-  <h2>{{ row.team }}</h2>
-  <h2>{{ row[K/9] }}</h2>
-</div> -->
+
+
+
+<form class="form choose">
+  <h2>Choose a player</h2>
+  <div class="form-group">
+    <div class="input-group">
+        <select class="form-control">
+          <option>Arrieta</option>
+          <option>Archer</option>
+        </select>
+    </div>
+  </div>
+</form>
+
+
+
+
 
 
 <div ng-show="vm.loaded" class="table_container">
+  <h1>Player shown: ...</h1>
+
   <table class="table table-hover table-responsive">
     <tr class="header_row">
       <td>Year</td>
       <td>Team</td>
+      <td>K/9</td>
       <td>FIP</td>
     </tr>
     <tr class="data_row" ng-repeat="row in vm.rows">
       <td>{{ row['year'] }}</td>
       <td>{{ row['team'] }}</td>
-      <td>{{ row['FIP'] }}</td>
+      <td>{{ row['K/9']  }}</td>
+      <td>{{ row['FIP']  }}</td>
     </tr>
   </table>
 </div>

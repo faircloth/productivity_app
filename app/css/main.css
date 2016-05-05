@@ -5818,9 +5818,6 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
-body {
-  background: #e2ebf3; }
-
 .content {
   margin: 40px auto;
   padding: 30px; }
@@ -5840,30 +5837,57 @@ div.table_container {
   margin: 30px 0px;
   width: 95%;
   min-width: 300px;
-  max-width: 800px; }
+  max-width: 1200px; }
   div.table_container table {
     background-color: white; }
+    div.table_container table tr {
+      padding: 10px; }
     div.table_container table tr.header_row {
-      background-color: blue;
-      color: white; }
+      border: none;
+      border-bottom: 3px solid black; }
+      div.table_container table tr.header_row td {
+        border-top: none;
+        font-weight: bold;
+        font-size: 1.1em; }
+    div.table_container table tr:last-child {
+      background-color: darkblue;
+      color: white;
+      font-weight: bold;
+      font-size: 1.1em; }
+
+form div.form-group div.input-group input {
+  height: 34px;
+  background-color: white;
+  padding: 6px 12px;
+  margin: 4px 0px;
+  margin-right: 8px; }
+
+form div.form-group div.input-group select {
+  height: 34px;
+  background-color: white;
+  padding: 6px 12px;
+  margin: 4px 0px;
+  margin-right: 6px; }
+
+form.choose div.form-group div.input-group select {
+  width: 400px; }
 
 .navbar-fixed-top {
-  background-color: black;
-  color: white;
-  display: block; }
+  background-color: #72786F;
+  display: block;
+  border-bottom: 3px solid #72786F; }
   .navbar-fixed-top ul {
     display: block;
-    height: 50px;
     width: 90%;
     margin: 10px auto;
     list-style-type: none; }
     .navbar-fixed-top ul li {
       display: inline-block;
-      height: 50px;
-      margin: 15px 20px; }
+      margin: 12px 16px; }
       .navbar-fixed-top ul li a {
-        font-size: 1.0em;
-        color: white; }
+        font-size: 1.1em;
+        color: white;
+        font-weight: bold; }
 
 body {
   font-size: 62.5%;
@@ -5906,10 +5930,10 @@ label {
   font-size: 1.8em; }
 
 input {
-  font-size: 1.8em; }
+  font-size: 2.4em; }
 
 table {
-  font-size: 2.2em; }
+  font-size: 2.3em; }
 
 textarea {
   font-size: 2.4em;

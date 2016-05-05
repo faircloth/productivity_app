@@ -56,6 +56,17 @@ var config = function config($urlRouterProvider, $stateProvider) {
         templateUrl: 'templates/app-fangraphs/main-fangraphs.tpl.html'
       }
     }
+  }).state('root.load-players', {
+    url: '/fangraphs/load-players',
+    views: {
+      navbar: {
+        templateUrl: 'templates/app-layout/navbar.tpl.html'
+      },
+      content: {
+        controller: 'LoadPlayersController as vm',
+        templateUrl: 'templates/app-fangraphs/load-players.tpl.html'
+      }
+    }
   });
 };
 
@@ -105,7 +116,33 @@ var _herokuConstant2 = _interopRequireDefault(_herokuConstant);
 // instantiate angular app
 _angular2['default'].module('app.core', ['ui.router', 'ngCookies']).constant('HEROKU', _herokuConstant2['default']).config(_config2['default']);
 
-},{"./config":1,"./heroku.constant":2,"angular":16,"angular-cookies":13,"angular-ui-router":14}],4:[function(require,module,exports){
+},{"./config":1,"./heroku.constant":2,"angular":17,"angular-cookies":14,"angular-ui-router":15}],4:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var LoadPlayersController = function LoadPlayersController($scope, FangraphsService) {
+
+  var vm = this;
+
+  vm.loadPlayers = loadPlayers;
+
+  function loadPlayers() {
+    console.log('file import called');
+    var fileField = document.getElementById('playerImport');
+    var fileObj = fileField.files[0];
+    console.log(fileObj);
+    FangraphsService.uploadFile(fileObj);
+  }
+};
+
+LoadPlayersController.$inject = ['$scope'];
+
+exports['default'] = LoadPlayersController;
+module.exports = exports['default'];
+
+},{}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -137,7 +174,7 @@ MainFangraphsController.$inject = ['$scope', 'FangraphsService'];
 exports['default'] = MainFangraphsController;
 module.exports = exports['default'];
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -152,6 +189,10 @@ var _controllersMainController = require('./controllers/main.controller');
 
 var _controllersMainController2 = _interopRequireDefault(_controllersMainController);
 
+var _controllersLoadPlayersController = require('./controllers/load-players.controller');
+
+var _controllersLoadPlayersController2 = _interopRequireDefault(_controllersLoadPlayersController);
+
 // services
 
 var _servicesFangraphsService = require('./services/fangraphs.service');
@@ -161,12 +202,12 @@ var _servicesFangraphsService2 = _interopRequireDefault(_servicesFangraphsServic
 _angular2['default'].module('app.fangraphs', [])
 
 // controllers
-.controller('MainFangraphsController', _controllersMainController2['default'])
+.controller('MainFangraphsController', _controllersMainController2['default']).controller('LoadPlayersController', _controllersLoadPlayersController2['default'])
 
 // services
 .service('FangraphsService', _servicesFangraphsService2['default']);
 
-},{"./controllers/main.controller":4,"./services/fangraphs.service":6,"angular":16}],6:[function(require,module,exports){
+},{"./controllers/load-players.controller":4,"./controllers/main.controller":5,"./services/fangraphs.service":7,"angular":17}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -182,10 +223,15 @@ var FangraphsService = function FangraphsService($state, HEROKU, $http) {
 
   // service functions
   this.getData = getData;
+  this.uploadFile = uploadFile;
 
   // function definitions
   function getData() {
     return $http.get(apiURL + 'scrape');
+  }
+
+  function uploadFile(file) {
+    return $http.post(apiURL + 'load-players');
   }
 };
 
@@ -194,7 +240,7 @@ FangraphsService.$inject = ['$state', 'HEROKU', '$http'];
 exports['default'] = FangraphsService;
 module.exports = exports['default'];
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -237,7 +283,7 @@ ViewNotesController.$inject = ['$scope', 'NotesService', '$state'];
 exports['default'] = ViewNotesController;
 module.exports = exports['default'];
 
-},{"jquery":17}],8:[function(require,module,exports){
+},{"jquery":18}],9:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -268,7 +314,7 @@ ViewOneNoteController.$inject = ['$scope', '$stateParams', 'NotesService'];
 exports['default'] = ViewOneNoteController;
 module.exports = exports['default'];
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -301,7 +347,7 @@ _angular2['default'].module('app.notes', [])
 // services
 .service('NotesService', _servicesNotesService2['default']);
 
-},{"./controllers/view-notes.controller":7,"./controllers/view-one-note.controller":8,"./services/notes.service":10,"angular":16}],10:[function(require,module,exports){
+},{"./controllers/view-notes.controller":8,"./controllers/view-one-note.controller":9,"./services/notes.service":11,"angular":17}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -332,7 +378,7 @@ NotesService.$inject = ['$state', '$http', 'HEROKU'];
 exports['default'] = NotesService;
 module.exports = exports['default'];
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -355,7 +401,7 @@ require('./app-fangraphs/index');
 
 _angular2['default'].module('app', ['app.core', 'app.notes', 'app.fangraphs']);
 
-},{"./app-core/index":3,"./app-fangraphs/index":5,"./app-notes/index":9,"angular":16,"jquery":17}],12:[function(require,module,exports){
+},{"./app-core/index":3,"./app-fangraphs/index":6,"./app-notes/index":10,"angular":17,"jquery":18}],13:[function(require,module,exports){
 /**
  * @license AngularJS v1.5.5
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -679,11 +725,11 @@ angular.module('ngCookies').provider('$$cookieWriter', function $$CookieWriterPr
 
 })(window, window.angular);
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 require('./angular-cookies');
 module.exports = 'ngCookies';
 
-},{"./angular-cookies":12}],14:[function(require,module,exports){
+},{"./angular-cookies":13}],15:[function(require,module,exports){
 /**
  * State-based routing for AngularJS
  * @version v0.2.18
@@ -5223,7 +5269,7 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 /**
  * @license AngularJS v1.5.5
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -36092,11 +36138,11 @@ $provide.value("$locale", {
 })(window);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":15}],17:[function(require,module,exports){
+},{"./angular":16}],18:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.2.3
  * http://jquery.com/
@@ -45940,7 +45986,7 @@ if ( !noGlobal ) {
 return jQuery;
 }));
 
-},{}]},{},[11])
+},{}]},{},[12])
 
 
 //# sourceMappingURL=main.js.map

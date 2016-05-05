@@ -2,6 +2,7 @@ import angular from 'angular';
 
 // controllers
 import MainFangraphsController from './controllers/main.controller';
+import LoadPlayersController from './controllers/load-players.controller';
 
 
 // services
@@ -12,6 +13,7 @@ angular
   
   // controllers
   .controller('MainFangraphsController', MainFangraphsController)
+  .controller('LoadPlayersController', LoadPlayersController)
   
   // services
   .service('FangraphsService', FangraphsService)

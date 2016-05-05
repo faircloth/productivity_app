@@ -4,16 +4,66 @@ div.table_container {
   margin: 30px 0px;
   width: 95%;
   min-width: 300px;
-  max-width: 800px;
+  max-width: 1200px;
 
   table {
     background-color: white;
+  
+    tr {
+      padding: 10px;
+    }
 
     tr.header_row {
-      background-color: blue;
-      color: white;
+      border: none;
+      border-bottom: 3px solid black;
+
+      td {
+        border-top: none;
+        font-weight: bold;
+        font-size: 1.1em;
+      }
     }
+
+    tr:last-child {
+        background-color: darkblue;
+        color: white;
+        font-weight: bold;
+        font-size: 1.1em;
+    }
+
   }
 
 
+}
+
+form {
+  div.form-group {
+    div.input-group {
+      input { 
+        height: 34px; 
+        background-color: white;
+        padding: 6px 12px;
+        margin: 4px 0px;
+        margin-right: 8px;
+      }
+
+      select { 
+        height: 34px; 
+        background-color: white;
+        padding: 6px 12px;
+        margin: 4px 0px;
+        margin-right: 6px;
+      }
+    }
+  }
+}
+
+form.choose {
+  div.form-group {
+    div.input-group {
+      select { 
+        width: 400px;
+      }
+    }
+  }
 }

@@ -55,6 +55,18 @@ let config = function($urlRouterProvider, $stateProvider) {
           templateUrl: 'templates/app-fangraphs/main-fangraphs.tpl.html'
         }
       }
+    })
+    .state('root.load-players', {
+      url: '/fangraphs/load-players',
+      views: {
+        navbar: {
+          templateUrl: 'templates/app-layout/navbar.tpl.html'
+        },
+        content: {
+          controller: 'LoadPlayersController as vm',
+          templateUrl: 'templates/app-fangraphs/load-players.tpl.html'
+        }
+      }
     });
 
 };

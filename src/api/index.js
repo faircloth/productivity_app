@@ -10,6 +10,12 @@ var cheerio = require('cheerio');
 
 // API routes
 
+// upload file
+router.post('/load-players', (req, res) => {
+  console.log(req);
+});
+
+
 // GET // Request all notes
 router.get('/notes', (req, res) => {
   Note.find({}, function(err, notes) {
@@ -88,10 +94,11 @@ router.get('/scrape', function(req, res){
     // The URL we will scrape from - in our example Anchorman 2.
 
     // var playerId = '1890'; // matt moore
-    var playerId = '4153'; //jake arrieta
+    // var playerId = '4153'; //jake arrieta
+    var playerId = '14106'; //addison russell
 
     // var playerId = '6345'; // archer
-    var position = 'P';
+    var position = 'SS';
     var url = 'http://www.fangraphs.com/statss.aspx?playerid=' + playerId + '&position=' + position + '/';
 
     // todo: build a data object
