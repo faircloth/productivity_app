@@ -128,16 +128,20 @@ var LoadPlayersController = function LoadPlayersController($scope, FangraphsServ
 
   vm.loadPlayers = loadPlayers;
 
+  console.log(FangraphsService);
+
   function loadPlayers() {
     console.log('file import called');
     var fileField = document.getElementById('playerImport');
     var fileObj = fileField.files[0];
     console.log(fileObj);
-    FangraphsService.uploadFile(fileObj);
+    FangraphsService.uploadFile(fileObj).then(function (res) {
+      console.log(res);
+    });
   }
 };
 
-LoadPlayersController.$inject = ['$scope'];
+LoadPlayersController.$inject = ['$scope', 'FangraphsService'];
 
 exports['default'] = LoadPlayersController;
 module.exports = exports['default'];

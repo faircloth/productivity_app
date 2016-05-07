@@ -94,8 +94,8 @@ router.get('/scrape', function(req, res){
     // The URL we will scrape from - in our example Anchorman 2.
 
     // var playerId = '1890'; // matt moore
-    // var playerId = '4153'; //jake arrieta
-    var playerId = '14106'; //addison russell
+    var playerId = '4153'; //jake arrieta
+    // var playerId = '14106'; //addison russell
 
     // var playerId = '6345'; // archer
     var position = 'SS';
@@ -127,15 +127,6 @@ router.get('/scrape', function(req, res){
                res.json( {data: data});
 
             }, 1000);
-
-
-      
-            // console.log(rows);
-
-            // Finally, we'll define the variables we're going to capture
-
-            // var title, release, rating;
-            // var json = { title : "", release : "", rating : ""};
         }
     });
 });
