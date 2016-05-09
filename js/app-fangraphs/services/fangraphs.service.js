@@ -46,7 +46,7 @@ let FangraphsService = function($state, HEROKU, $http) {
   }
 
   function updatePlayer(player) {
-    return $http.put(apiURL + 'players/' + player._id);
+    return $http.put(apiURL + 'players/' + player._id, player);
   }
 
 

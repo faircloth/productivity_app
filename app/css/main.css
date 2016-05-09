@@ -5819,7 +5819,7 @@ button.close {
     display: none !important; } }
 
 .content {
-  margin: 40px auto;
+  margin: 60px auto;
   padding: 30px; }
 
 .notes {
@@ -5859,19 +5859,20 @@ div.table_container {
     div.table_container table tr.no_total:last-child {
       border-bottom: 1px dashed black; }
 
-form div.form-group div.input-group input {
-  height: 34px;
-  background-color: white;
-  padding: 6px 12px;
-  margin: 4px 0px;
-  margin-right: 8px; }
-
-form div.form-group div.input-group select {
-  height: 34px;
-  background-color: white;
-  padding: 6px 12px;
-  margin: 4px 0px;
-  margin-right: 6px; }
+form {
+  margin: 10px 0px; }
+  form div.form-group div.input-group input {
+    height: 34px;
+    background-color: white;
+    padding: 6px 12px;
+    margin: 4px 0px;
+    margin-right: 8px; }
+  form div.form-group div.input-group select {
+    height: 34px;
+    background-color: white;
+    padding: 6px 12px;
+    margin: 4px 0px;
+    margin-right: 6px; }
 
 form.choose div.form-group div.input-group select {
   width: 400px; }

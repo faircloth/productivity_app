@@ -4,6 +4,8 @@ let ManagePlayersController = function($scope, FangraphsService, $state) {
 
   vm.deletePlayer = deletePlayer;
   vm.updatePlayer = updatePlayer;
+  vm.addPlayer    = addPlayer;
+  vm.positions    = ['P', 'C', '1B', '2B', 'SS', '3B', 'OF'];
 
   // on page load
   getPlayers();
@@ -30,6 +32,14 @@ let ManagePlayersController = function($scope, FangraphsService, $state) {
   function updatePlayer(player) {
     console.log('player to be updated: ', player);
     FangraphsService.updatePlayer(player).then( (res) => {
+      console.log(res);
+      getPlayers();
+    });
+  }
+
+  // add player to the database
+  function addPlayer(player) {
+    FangraphsService.addPlayer(player).then( (res)=> {
       console.log(res);
       getPlayers();
     });

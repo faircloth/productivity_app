@@ -1,7 +1,25 @@
-<h3>Manage players</h3>
+
+<form class="form-inline add-player">
+  <h2>Add a player</h2>
+  <div class="form-group">
+    <div class="input-group">
+      <input ng-model="newPlayer.firstName" placeholder="First name"/>
+      <input ng-model="newPlayer.lastName" placeholder="Last name"/>
+      <input ng-model="newPlayer.fgId" placeholder="FanGraphs ID"/>
+      <select ng-model="newPlayer.position" style="vertical-align: top;">
+        <option ng-repeat="position in vm.positions">{{ position }}</option>
+      </select>
+    </div>
+    <button ng-click="vm.addPlayer(newPlayer)" class="form-control btn btn-success">Add</button>
+  </div>
+</form>
+
+<hr>
+
+<h2>Manage players</h2>
 
 <div ng-show="vm.loaded" class="table_container">
-  
+
   <table class="table table-hover table-responsive">
     <tr class="header_row">
       <td>First name</td>

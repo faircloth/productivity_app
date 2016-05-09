@@ -222,6 +222,8 @@ var ManagePlayersController = function ManagePlayersController($scope, Fangraphs
 
   vm.deletePlayer = deletePlayer;
   vm.updatePlayer = updatePlayer;
+  vm.addPlayer = addPlayer;
+  vm.positions = ['P', 'C', '1B', '2B', 'SS', '3B', 'OF'];
 
   // on page load
   getPlayers();
@@ -248,6 +250,14 @@ var ManagePlayersController = function ManagePlayersController($scope, Fangraphs
   function updatePlayer(player) {
     console.log('player to be updated: ', player);
     FangraphsService.updatePlayer(player).then(function (res) {
+      console.log(res);
+      getPlayers();
+    });
+  }
+
+  // add player to the database
+  function addPlayer(player) {
+    FangraphsService.addPlayer(player).then(function (res) {
       console.log(res);
       getPlayers();
     });
@@ -349,7 +359,7 @@ var FangraphsService = function FangraphsService($state, HEROKU, $http) {
   }
 
   function updatePlayer(player) {
-    return $http.put(apiURL + 'players/' + player._id);
+    return $http.put(apiURL + 'players/' + player._id, player);
   }
 };
 
