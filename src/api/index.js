@@ -3,7 +3,12 @@
 
 var express = require('express');
 var router = express.Router();
-var Note = require('../models/note');
+
+
+// database models
+var Note   = require('../models/note');
+var Player = require('../models/player');
+
 
 var request = require('request');
 var cheerio = require('cheerio');
@@ -13,6 +18,17 @@ var cheerio = require('cheerio');
 // upload file
 router.post('/load-players', (req, res) => {
   console.log(req);
+});
+
+
+router.get('/players', (req, res) => {
+  Player.find({}, (err, players) => {
+    if (err) {
+      return res.status(500).json({message: err.message});
+    } else {
+      res.json({players: players});
+    }
+  });
 });
 
 
@@ -47,6 +63,7 @@ router.get('/notes/:_id', (req, res) => {
 // router.post('/notes', (req, res) => {
 //   console.log('A new note will be created');
 // });
+
 
 
 function getData (headers, html) {
@@ -98,7 +115,7 @@ router.get('/scrape', function(req, res){
     // var playerId = '14106'; //addison russell
 
     // var playerId = '6345'; // archer
-    var position = 'SS';
+    var position = 'P';
     var url = 'http://www.fangraphs.com/statss.aspx?playerid=' + playerId + '&position=' + position + '/';
 
     // todo: build a data object
@@ -130,6 +147,8 @@ router.get('/scrape', function(req, res){
         }
     });
 });
+
+
 
 
 

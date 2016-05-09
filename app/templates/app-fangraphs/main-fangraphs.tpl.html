@@ -21,9 +21,8 @@
   <h2>Choose a player</h2>
   <div class="form-group">
     <div class="input-group">
-        <select class="form-control">
-          <option>Arrieta</option>
-          <option>Archer</option>
+        <select class="form-control" ng-model="player" ng-change="vm.playerSelected(player)">
+          <option ng-repeat="player in vm.players">Arrieta</option>
         </select>
     </div>
   </div>

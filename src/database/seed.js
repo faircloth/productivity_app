@@ -1,6 +1,7 @@
 'use strict';
 
-var Note = require('../models/note.js');
+var Note   = require('../models/note.js');
+var Player = require('../models/player.js');
 
 var notes = [
   {
@@ -15,6 +16,28 @@ var notes = [
   }
 ];
 
+
+var players = [
+  {
+    firstName: 'Jake',
+    lastName: 'Arrieta',
+    fgId: '4153',
+    position: 'P'
+  },
+  // {
+  //   firstName: 'Addison',
+  //   lastName: 'Russell',
+  //   fgId: '14106',
+  //   position: 'SS'
+  // },
+  {
+    firstName: 'Chris',
+    lastName: 'Archer',
+    fgId: '6345',
+    position: 'P'
+  },
+];
+
 notes.forEach(function(note, index) {
   Note.find({'title': note.title, 'topic': note.topic, 'content': note.content}, function(err, notes) {
     if (!err && !notes.length) {
@@ -22,3 +45,21 @@ notes.forEach(function(note, index) {
     }
   });
 });
+
+
+players.forEach(function(player, index) {
+  Player.find({'fgId': player.fgId}, function(err, players) {
+    if (!err && !players.length) {
+      Player.create(
+        {
+          firstName: player.firstName, 
+          lastName: player.lastName,
+          fgId: player.fgId,
+          position: player.position
+        }
+      );
+    }
+  });
+});
+
+

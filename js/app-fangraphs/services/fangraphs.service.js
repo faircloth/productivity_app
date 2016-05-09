@@ -9,6 +9,7 @@ let FangraphsService = function($state, HEROKU, $http) {
   // service functions
   this.getData    = getData;
   this.uploadFile = uploadFile;
+  this.getPlayers = getPlayers;
 
 
   // function definitions
@@ -18,6 +19,10 @@ let FangraphsService = function($state, HEROKU, $http) {
 
   function uploadFile (file) {
     return $http.post(apiURL + 'load-players');
+  }
+
+  function getPlayers() {
+    return $http.get(apiURL + 'players');
   }
 
 
