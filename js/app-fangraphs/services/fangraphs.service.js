@@ -10,6 +10,7 @@ let FangraphsService = function($state, HEROKU, $http) {
   this.getData    = getData;
   this.uploadFile = uploadFile;
   this.getPlayers = getPlayers;
+  this.addPlayer  = addPlayer;
 
 
   // function definitions
@@ -23,6 +24,17 @@ let FangraphsService = function($state, HEROKU, $http) {
 
   function getPlayers() {
     return $http.get(apiURL + 'players');
+  }
+
+  function addPlayer(player) {
+    let playerObj = {
+      firstName:  player.firstName,
+      lastName:   player.lastName,
+      fgId:       player.fgId,
+      position:   player.position
+    };
+    console.log('player object:', playerObj);
+    return $http.post(apiURL + 'players', playerObj);
   }
 
 

@@ -158,11 +158,13 @@ var MainFangraphsController = function MainFangraphsController($scope, Fangraphs
 
   var vm = this;
 
-  vm.playerSelected = playerSelected;
+  vm.submitPlayer = submitPlayer;
+  vm.addPlayer = addPlayer;
+  vm.positions = ['P', 'C', '1B', '2B', 'SS', '3B', 'OF'];
 
   // on page load
   getPlayers();
-  getData();
+  // getData();
 
   // function definitions
   function getData() {
@@ -174,6 +176,11 @@ var MainFangraphsController = function MainFangraphsController($scope, Fangraphs
     });
   }
 
+  // add player to the database
+  function addPlayer(player) {
+    FangraphsService.addPlayer(player);
+  }
+
   // get players for drop down
   function getPlayers() {
     FangraphsService.getPlayers().then(function (res) {
@@ -182,9 +189,9 @@ var MainFangraphsController = function MainFangraphsController($scope, Fangraphs
     });
   }
 
-  // player selected in dropdown
-  function playerSelected(player) {
-    console.log('player selected: ', player);
+  // submit player selected to get Data
+  function submitPlayer(player) {
+    console.log('player to get:  ', player);
   }
 };
 
@@ -244,6 +251,7 @@ var FangraphsService = function FangraphsService($state, HEROKU, $http) {
   this.getData = getData;
   this.uploadFile = uploadFile;
   this.getPlayers = getPlayers;
+  this.addPlayer = addPlayer;
 
   // function definitions
   function getData() {
@@ -256,6 +264,17 @@ var FangraphsService = function FangraphsService($state, HEROKU, $http) {
 
   function getPlayers() {
     return $http.get(apiURL + 'players');
+  }
+
+  function addPlayer(player) {
+    var playerObj = {
+      firstName: player.firstName,
+      lastName: player.lastName,
+      fgId: player.fgId,
+      position: player.position
+    };
+    console.log('player object:', playerObj);
+    return $http.post(apiURL + 'players', playerObj);
   }
 };
 

@@ -2,28 +2,32 @@
   <h2>Add a player</h2>
   <div class="form-group">
     <div class="input-group">
-      <input  placeholder="First name"/>
-      <input  placeholder="Last name"/>
-      <input  placeholder="FanGraphs ID"/>
-      <select>
-        <option>P</option>
-        <option>SS</option>
+      <input ng-model="player.firstName" placeholder="First name"/>
+      <input ng-model="player.lastName" placeholder="Last name"/>
+      <input ng-model="player.fgId" placeholder="FanGraphs ID"/>
+      <select ng-model="player.position" style="vertical-align: top;">
+        <option ng-repeat="position in vm.positions">{{ position }}</option>
       </select>
     </div>
-    <button class="form-control btn btn-success">Add</button>
+    <button ng-click="vm.addPlayer(player)" class="form-control btn btn-success">Add</button>
   </div>
 </form>
 
 
 
 
+<!-- drop down for player selection -->
+
 <form class="form choose">
   <h2>Choose a player</h2>
   <div class="form-group">
     <div class="input-group">
-        <select class="form-control" ng-model="player" ng-change="vm.playerSelected(player)">
-          <option ng-repeat="player in vm.players">Arrieta</option>
-        </select>
+      <select 
+        class="form-control" 
+        ng-model="player" 
+        ng-options="player.lastName for player in vm.players">
+      </select>
+      <button ng-click="vm.submitPlayer(player)" class="btn btn-success" style="vertical-align: top; margin-top: 4px;">Submit</button>
     </div>
   </div>
 </form>
