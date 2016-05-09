@@ -14,8 +14,8 @@ let FangraphsService = function($state, HEROKU, $http) {
 
 
   // function definitions
-  function getData () {
-    return $http.get(apiURL + 'scrape');
+  function getData (player) {
+    return $http.post(apiURL + 'scrape', player);
   }
 
   function uploadFile (file) {

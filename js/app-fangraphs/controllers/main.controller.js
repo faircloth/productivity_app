@@ -10,23 +10,16 @@ let MainFangraphsController = function($scope, FangraphsService) {
 
   // on page load
   getPlayers();
-  // getData();
 
   // function definitions
-  function getData () {
-    FangraphsService.getData().then( (res) => {
-      // console.log(res);
-      vm.rows = res.data.data;
-      console.log(vm.rows);
-      vm.loaded = true;
-    });
-  }
 
   // add player to the database
   function addPlayer(player) {
-    FangraphsService.addPlayer(player);
+    FangraphsService.addPlayer(player).then( (res)=> {
+      console.log(res);
+      getPlayers();
+    });
   }
-
 
   // get players for drop down
   function getPlayers() {
@@ -38,7 +31,12 @@ let MainFangraphsController = function($scope, FangraphsService) {
 
   // submit player selected to get Data
   function submitPlayer(player) {
-    console.log('player to get:  ', player);
+    FangraphsService.getData(player).then( (res) => {
+      // console.log(res);
+      vm.rows = res.data.data;
+      console.log(vm.rows);
+      vm.loaded = true;
+    });
   }
 
 };

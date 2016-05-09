@@ -12,18 +12,12 @@ var cheerio = require('cheerio');
 
 
 // get player info api route
-router.get('/scrape', function(req, res){
-    // The URL we will scrape from - in our example Anchorman 2.
-
-    // var playerId = '1890'; // matt moore
-    var playerId = '4153'; //jake arrieta
-    // var playerId = '14106'; //addison russell
-
-    // var playerId = '6345'; // archer
-    var position = 'P';
-    var url = 'http://www.fangraphs.com/statss.aspx?playerid=' + playerId + '&position=' + position + '/';
-
-    // todo: build a data object
+router.post('/scrape', function(req, res){
+    
+    var player   = req.body;
+    var fgId     = player.fgId;
+    var position = player.position;
+    var url = 'http://www.fangraphs.com/statss.aspx?playerid=' + fgId + '&position=' + position + '/';
 
     request(url, function(error, response, html){
 

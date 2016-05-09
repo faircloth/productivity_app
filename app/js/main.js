@@ -164,21 +164,15 @@ var MainFangraphsController = function MainFangraphsController($scope, Fangraphs
 
   // on page load
   getPlayers();
-  // getData();
 
   // function definitions
-  function getData() {
-    FangraphsService.getData().then(function (res) {
-      // console.log(res);
-      vm.rows = res.data.data;
-      console.log(vm.rows);
-      vm.loaded = true;
-    });
-  }
 
   // add player to the database
   function addPlayer(player) {
-    FangraphsService.addPlayer(player);
+    FangraphsService.addPlayer(player).then(function (res) {
+      console.log(res);
+      getPlayers();
+    });
   }
 
   // get players for drop down
@@ -191,7 +185,12 @@ var MainFangraphsController = function MainFangraphsController($scope, Fangraphs
 
   // submit player selected to get Data
   function submitPlayer(player) {
-    console.log('player to get:  ', player);
+    FangraphsService.getData(player).then(function (res) {
+      // console.log(res);
+      vm.rows = res.data.data;
+      console.log(vm.rows);
+      vm.loaded = true;
+    });
   }
 };
 
@@ -254,8 +253,8 @@ var FangraphsService = function FangraphsService($state, HEROKU, $http) {
   this.addPlayer = addPlayer;
 
   // function definitions
-  function getData() {
-    return $http.get(apiURL + 'scrape');
+  function getData(player) {
+    return $http.post(apiURL + 'scrape', player);
   }
 
   function uploadFile(file) {
