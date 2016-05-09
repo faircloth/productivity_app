@@ -5842,6 +5842,8 @@ div.table_container {
     background-color: white; }
     div.table_container table tr {
       padding: 10px; }
+    div.table_container table input.edit {
+      font-size: 1.1em; }
     div.table_container table tr.header_row {
       border: none;
       border-bottom: 3px solid black; }
@@ -5849,11 +5851,13 @@ div.table_container {
         border-top: none;
         font-weight: bold;
         font-size: 1.1em; }
-    div.table_container table tr:last-child {
+    div.table_container table tr.with_total:last-child {
       background-color: darkblue;
       color: white;
       font-weight: bold;
       font-size: 1.1em; }
+    div.table_container table tr.no_total:last-child {
+      border-bottom: 1px dashed black; }
 
 form div.form-group div.input-group input {
   height: 34px;

@@ -216,11 +216,12 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var ManagePlayersController = function ManagePlayersController($scope, FangraphsService) {
+var ManagePlayersController = function ManagePlayersController($scope, FangraphsService, $state) {
 
   var vm = this;
 
   vm.deletePlayer = deletePlayer;
+  vm.updatePlayer = updatePlayer;
 
   // on page load
   getPlayers();
@@ -240,11 +241,20 @@ var ManagePlayersController = function ManagePlayersController($scope, Fangraphs
     console.log('to delete:  ', player);
     FangraphsService.deletePlayer(player).then(function (res) {
       console.log(res);
+      getPlayers();
+    });
+  }
+
+  function updatePlayer(player) {
+    console.log('player to be updated: ', player);
+    FangraphsService.updatePlayer(player).then(function (res) {
+      console.log(res);
+      getPlayers();
     });
   }
 };
 
-ManagePlayersController.$inject = ['$scope', 'FangraphsService'];
+ManagePlayersController.$inject = ['$scope', 'FangraphsService', '$state'];
 
 exports['default'] = ManagePlayersController;
 module.exports = exports['default'];
@@ -306,6 +316,7 @@ var FangraphsService = function FangraphsService($state, HEROKU, $http) {
   this.getPlayers = getPlayers;
   this.addPlayer = addPlayer;
   this.deletePlayer = deletePlayer;
+  this.updatePlayer = updatePlayer;
 
   // function definitions
   function getData(player) {
@@ -335,6 +346,10 @@ var FangraphsService = function FangraphsService($state, HEROKU, $http) {
   function deletePlayer(player) {
     console.log('player to delete:  ', player);
     return $http['delete'](apiURL + 'players/' + player._id);
+  }
+
+  function updatePlayer(player) {
+    return $http.put(apiURL + 'players/' + player._id);
   }
 };
 

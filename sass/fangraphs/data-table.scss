@@ -13,6 +13,10 @@ div.table_container {
       padding: 10px;
     }
 
+    input.edit {
+      font-size: 1.1em;
+    }
+
     tr.header_row {
       border: none;
       border-bottom: 3px solid black;
@@ -21,14 +25,20 @@ div.table_container {
         border-top: none;
         font-weight: bold;
         font-size: 1.1em;
+
       }
+
     }
 
-    tr:last-child {
+    tr.with_total:last-child {
         background-color: darkblue;
         color: white;
         font-weight: bold;
         font-size: 1.1em;
+    }
+
+    tr.no_total:last-child {
+      border-bottom: 1px dashed black;
     }
 
   }

@@ -1,8 +1,9 @@
-let ManagePlayersController = function($scope, FangraphsService) {
+let ManagePlayersController = function($scope, FangraphsService, $state) {
   
   let vm = this;
 
   vm.deletePlayer = deletePlayer;
+  vm.updatePlayer = updatePlayer;
 
   // on page load
   getPlayers();
@@ -22,11 +23,20 @@ let ManagePlayersController = function($scope, FangraphsService) {
     console.log('to delete:  ', player);
     FangraphsService.deletePlayer(player).then( (res) => {
       console.log(res);
+      getPlayers();
+    });
+  }
+
+  function updatePlayer(player) {
+    console.log('player to be updated: ', player);
+    FangraphsService.updatePlayer(player).then( (res) => {
+      console.log(res);
+      getPlayers();
     });
   }
 
 };
 
-ManagePlayersController.$inject = ['$scope', 'FangraphsService'];
+ManagePlayersController.$inject = ['$scope', 'FangraphsService', '$state'];
 
 export default ManagePlayersController;

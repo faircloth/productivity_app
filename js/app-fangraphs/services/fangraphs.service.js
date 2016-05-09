@@ -12,6 +12,7 @@ let FangraphsService = function($state, HEROKU, $http) {
   this.getPlayers   = getPlayers;
   this.addPlayer    = addPlayer;
   this.deletePlayer = deletePlayer;
+  this.updatePlayer = updatePlayer;
 
 
   // function definitions
@@ -42,6 +43,10 @@ let FangraphsService = function($state, HEROKU, $http) {
   function deletePlayer(player) {
     console.log('player to delete:  ', player);
     return $http.delete(apiURL + 'players/' + player._id);
+  }
+
+  function updatePlayer(player) {
+    return $http.put(apiURL + 'players/' + player._id);
   }
 
 

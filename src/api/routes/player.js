@@ -55,5 +55,24 @@ router.delete('/players/:_id', (req, res)=> {
   });
 });
 
+// PUT // update player info
+router.put('/players/:_id', (req, res) => {
+  var id     = req.params._id;
+  var player = req.body;
+
+  if (player && player._id !== id) {
+    return res.status(500).json({err: "Ids don't match!"});
+  }
+  
+  // option changes default of false to true to return new data
+  Player.findByIdAndUpdate(id, player, {new: true}, function(err, player) {
+    if (err) {
+      // return causes it to end
+      return res.status(500).json({err: err.message});
+    }
+    res.json({'player': player, message: 'Player updated'});
+  });
+});
+
 
 module.exports = router;

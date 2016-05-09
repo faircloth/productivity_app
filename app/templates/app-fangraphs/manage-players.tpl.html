@@ -8,14 +8,23 @@
       <td>Last name</td>
       <td>Position</td>
       <td>Fangraphs Id</td>
-      <td>Delete</td>
+      <td>Action</td>
     </tr>
-    <tr class="data_row" ng-repeat="player in vm.players">
-      <td>{{ player['firstName'] }}</td>
-      <td>{{ player['lastName']  }}</td>
-      <td>{{ player['position']  }}</td>
-      <td>{{ player['fgId']      }}</td>
-      <td><button ng-click="vm.deletePlayer(player)" class="btn btn-danger">Delete</button></td>
+    <tr ng-click="editing = true" class="data_row no_total" ng-repeat="player in vm.players">
+      <td ng-hide="editing">{{ player['firstName'] }}</td>
+      <td ng-show="editing"><input class="edit" ng-model="player.firstName"/></td>
+
+      <td ng-hide="editing">{{ player['lastName'] }}</td>
+      <td ng-show="editing"><input class="edit" ng-model="player.lastName"/></td>
+
+      <td ng-hide="editing">{{ player['position'] }}</td>
+      <td ng-show="editing"><input class="edit" ng-model="player.position"/></td>
+
+      <td ng-hide="editing">{{ player['fgId'] }}</td>
+      <td ng-show="editing"><input class="edit" ng-model="player.fgId"/></td>
+
+      <td><button ng-click="vm.deletePlayer(player)" class="btn btn-danger">Delete</button> <button ng-show="editing" ng-click="vm.updatePlayer(player)" class="btn btn-success">Save</button></td>
+
     </tr>
   </table>
 </div>
