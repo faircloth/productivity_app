@@ -21,6 +21,7 @@ var players = [
   {
     firstName: 'Jake',
     lastName: 'Arrieta',
+    fullName: 'Jake Arrieta',
     fgId: '4153',
     position: 'P'
   },
@@ -33,6 +34,7 @@ var players = [
   {
     firstName: 'Chris',
     lastName: 'Archer',
+    fullName: 'Chris Archer',
     fgId: '6345',
     position: 'P'
   },
