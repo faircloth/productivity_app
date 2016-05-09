@@ -41,4 +41,19 @@ router.post('/players', (req, res) => {
 });
 
 
+// DELETE // delete a player
+router.delete('/players/:_id', (req, res)=> {
+  var id = req.params._id;
+  var player = req.body;
+
+  Player.findByIdAndRemove(id, function(err, player) {
+    if (err) {
+      return res.status(500).json({err: err.message});
+    } else {
+      res.json({message: player.firstName + ' ' + player.lastName + 'has been deleted from API!'});
+    }
+  });
+});
+
+
 module.exports = router;

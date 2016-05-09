@@ -7,10 +7,11 @@ let FangraphsService = function($state, HEROKU, $http) {
   console.log('apiURL:  ', apiURL);
 
   // service functions
-  this.getData    = getData;
-  this.uploadFile = uploadFile;
-  this.getPlayers = getPlayers;
-  this.addPlayer  = addPlayer;
+  this.getData      = getData;
+  this.uploadFile   = uploadFile;
+  this.getPlayers   = getPlayers;
+  this.addPlayer    = addPlayer;
+  this.deletePlayer = deletePlayer;
 
 
   // function definitions
@@ -36,6 +37,11 @@ let FangraphsService = function($state, HEROKU, $http) {
     };
     console.log('player object:', playerObj);
     return $http.post(apiURL + 'players', playerObj);
+  }
+
+  function deletePlayer(player) {
+    console.log('player to delete:  ', player);
+    return $http.delete(apiURL + 'players/' + player._id);
   }
 
 

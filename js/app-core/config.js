@@ -67,6 +67,18 @@ let config = function($urlRouterProvider, $stateProvider) {
           templateUrl: 'templates/app-fangraphs/load-players.tpl.html'
         }
       }
+    })
+    .state('root.manage-players', {
+      url: '/fangraphs/manage-players',
+      views: {
+        navbar: {
+          templateUrl: 'templates/app-layout/navbar.tpl.html'
+        },
+        content: {
+          controller: 'ManagePlayersController as vm',
+          templateUrl: 'templates/app-fangraphs/manage-players.tpl.html'
+        }
+      }
     });
 
 };
