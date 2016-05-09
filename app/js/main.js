@@ -269,6 +269,7 @@ var FangraphsService = function FangraphsService($state, HEROKU, $http) {
     var playerObj = {
       firstName: player.firstName,
       lastName: player.lastName,
+      fullName: player.firstName + ' ' + player.lastName,
       fgId: player.fgId,
       position: player.position
     };

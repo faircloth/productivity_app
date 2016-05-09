@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var playerSchema = new mongoose.Schema({
   firstName:  String,
   lastName:   String,
+  fullName:   String,
   fgId:       String,
   position:   String
 });

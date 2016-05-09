@@ -30,6 +30,7 @@ let FangraphsService = function($state, HEROKU, $http) {
     let playerObj = {
       firstName:  player.firstName,
       lastName:   player.lastName,
+      fullName:   player.firstName + ' ' + player.lastName,
       fgId:       player.fgId,
       position:   player.position
     };

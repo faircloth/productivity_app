@@ -2,14 +2,14 @@
   <h2>Add a player</h2>
   <div class="form-group">
     <div class="input-group">
-      <input ng-model="player.firstName" placeholder="First name"/>
-      <input ng-model="player.lastName" placeholder="Last name"/>
-      <input ng-model="player.fgId" placeholder="FanGraphs ID"/>
-      <select ng-model="player.position" style="vertical-align: top;">
+      <input ng-model="newPlayer.firstName" placeholder="First name"/>
+      <input ng-model="newPlayer.lastName" placeholder="Last name"/>
+      <input ng-model="newPlayer.fgId" placeholder="FanGraphs ID"/>
+      <select ng-model="newPlayer.position" style="vertical-align: top;">
         <option ng-repeat="position in vm.positions">{{ position }}</option>
       </select>
     </div>
-    <button ng-click="vm.addPlayer(player)" class="form-control btn btn-success">Add</button>
+    <button ng-click="vm.addPlayer(newPlayer)" class="form-control btn btn-success">Add</button>
   </div>
 </form>
 
@@ -25,7 +25,7 @@
       <select 
         class="form-control" 
         ng-model="player" 
-        ng-options="player.lastName for player in vm.players">
+        ng-options="player.fullName for player in vm.players">
       </select>
       <button ng-click="vm.submitPlayer(player)" class="btn btn-success" style="vertical-align: top; margin-top: 4px;">Submit</button>
     </div>
@@ -38,7 +38,7 @@
 
 
 <div ng-show="vm.loaded" class="table_container">
-  <h1>Player shown: ...</h1>
+  <h1>Player shown: {{ player.firstName }} {{ player.lastName }}</h1>
 
   <table class="table table-hover table-responsive">
     <tr class="header_row">
