@@ -2,7 +2,16 @@
 
 
 <form class="import-file-form" ng-submit="vm.loadPlayers()">
-  <h5>Import players</h5>
-  <input type="file" id="playerImport">
+ <ng-csv-import id="playerImport" content="csv.content"
+    header="csv.header" 
+    separator="csv.separator"
+    result="csv.result"
+    accept="csv.accept"></ng-csv-import>
   <button>Submit</button>
 </form>
+
+
+
+
+
+

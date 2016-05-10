@@ -1,4 +1,5 @@
 import angular from 'angular';
+import csvImport from 'angular-csv-import';
 
 // controllers
 import MainFangraphsController from './controllers/main.controller';
@@ -10,7 +11,7 @@ import ManagePlayersController from './controllers/manage-players.controller';
 import FangraphsService from './services/fangraphs.service';
 
 angular
-  .module('app.fangraphs', [])
+  .module('app.fangraphs', ['ngCsvImport'])
   
   // controllers
   .controller('MainFangraphsController', MainFangraphsController)

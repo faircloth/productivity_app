@@ -20,8 +20,16 @@ let FangraphsService = function($state, HEROKU, $http) {
     return $http.post(apiURL + 'scrape', player);
   }
 
-  function uploadFile (file) {
-    return $http.post(apiURL + 'load-players');
+  function uploadFile (fileObj) {
+    console.log('service', fileObj);
+    let formData = new FormData();
+    formData.append('fileimport', fileObj);
+    console.log('service', formData);
+    // HEROKU.CONFIG.headers['Content-Type'] = undefined;
+    // setTimeout( ()=> {
+    //   return console.log(formData);
+    // }, 5000);
+    // return $http.post(apiURL + 'load-players', formData);
   }
 
   function getPlayers() {

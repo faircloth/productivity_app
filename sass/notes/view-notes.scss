@@ -1,12 +1,21 @@
 .notes {
-  display: inline-block;
-  max-width: 250px;
-  width: 30%;
+  display: block;
+  width: 100%;
+  border: 1px dashed black;
+  margin: 20px 0px;
+  padding: 15px;
+  border-radius: 9px;
+  background-color: lightgrey;
+  cursor: pointer;
 
+  h2 {
+    margin: 10px 0px;
+    border-bottom: 1px solid black;
+    padding: 0px;
+    padding-bottom: 8px;
+  }
 
-  border: 2px solid black;
-  margin: 2.5% 40px;
-  padding: 20px;
-  border-radius: 4px;
-  background-color: white;
+  p {
+    padding: 5px 0px;
+  }
 }

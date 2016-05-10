@@ -127,7 +127,7 @@ var _herokuConstant2 = _interopRequireDefault(_herokuConstant);
 // instantiate angular app
 _angular2['default'].module('app.core', ['ui.router', 'ngCookies']).constant('HEROKU', _herokuConstant2['default']).config(_config2['default']);
 
-},{"./config":1,"./heroku.constant":2,"angular":18,"angular-cookies":15,"angular-ui-router":16}],4:[function(require,module,exports){
+},{"./config":1,"./heroku.constant":2,"angular":19,"angular-cookies":15,"angular-ui-router":17}],4:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -144,11 +144,19 @@ var LoadPlayersController = function LoadPlayersController($scope, FangraphsServ
   function loadPlayers() {
     console.log('file import called');
     var fileField = document.getElementById('playerImport');
-    var fileObj = fileField.files[0];
-    console.log(fileObj);
-    FangraphsService.uploadFile(fileObj).then(function (res) {
-      console.log(res);
-    });
+    console.log(fileField);
+
+    var content = $scope.csv.content;
+    console.log('content:   ', content);
+
+    var stringify = JSON.stringify(content);
+    console.log('stringify:   ', stringify);
+    // let fileObj = fileField.files[0];
+    // console.log(fileObj);
+    // FangraphsService.uploadFile(fileObj);
+    // .then( (res) => {
+    //   console.log(res);
+    // });
   }
 };
 
@@ -278,6 +286,10 @@ var _angular = require('angular');
 
 var _angular2 = _interopRequireDefault(_angular);
 
+var _angularCsvImport = require('angular-csv-import');
+
+var _angularCsvImport2 = _interopRequireDefault(_angularCsvImport);
+
 // controllers
 
 var _controllersMainController = require('./controllers/main.controller');
@@ -298,7 +310,7 @@ var _servicesFangraphsService = require('./services/fangraphs.service');
 
 var _servicesFangraphsService2 = _interopRequireDefault(_servicesFangraphsService);
 
-_angular2['default'].module('app.fangraphs', [])
+_angular2['default'].module('app.fangraphs', ['ngCsvImport'])
 
 // controllers
 .controller('MainFangraphsController', _controllersMainController2['default']).controller('LoadPlayersController', _controllersLoadPlayersController2['default']).controller('ManagePlayersController', _controllersManagePlayersController2['default'])
@@ -306,7 +318,7 @@ _angular2['default'].module('app.fangraphs', [])
 // services
 .service('FangraphsService', _servicesFangraphsService2['default']);
 
-},{"./controllers/load-players.controller":4,"./controllers/main.controller":5,"./controllers/manage-players.controller":6,"./services/fangraphs.service":8,"angular":18}],8:[function(require,module,exports){
+},{"./controllers/load-players.controller":4,"./controllers/main.controller":5,"./controllers/manage-players.controller":6,"./services/fangraphs.service":8,"angular":19,"angular-csv-import":16}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -333,8 +345,16 @@ var FangraphsService = function FangraphsService($state, HEROKU, $http) {
     return $http.post(apiURL + 'scrape', player);
   }
 
-  function uploadFile(file) {
-    return $http.post(apiURL + 'load-players');
+  function uploadFile(fileObj) {
+    console.log('service', fileObj);
+    var formData = new FormData();
+    formData.append('fileimport', fileObj);
+    console.log('service', formData);
+    // HEROKU.CONFIG.headers['Content-Type'] = undefined;
+    // setTimeout( ()=> {
+    //   return console.log(formData);
+    // }, 5000);
+    // return $http.post(apiURL + 'load-players', formData);
   }
 
   function getPlayers() {
@@ -411,7 +431,7 @@ ViewNotesController.$inject = ['$scope', 'NotesService', '$state'];
 exports['default'] = ViewNotesController;
 module.exports = exports['default'];
 
-},{"jquery":19}],10:[function(require,module,exports){
+},{"jquery":20}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -475,7 +495,7 @@ _angular2['default'].module('app.notes', [])
 // services
 .service('NotesService', _servicesNotesService2['default']);
 
-},{"./controllers/view-notes.controller":9,"./controllers/view-one-note.controller":10,"./services/notes.service":12,"angular":18}],12:[function(require,module,exports){
+},{"./controllers/view-notes.controller":9,"./controllers/view-one-note.controller":10,"./services/notes.service":12,"angular":19}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -529,7 +549,7 @@ require('./app-fangraphs/index');
 
 _angular2['default'].module('app', ['app.core', 'app.notes', 'app.fangraphs']);
 
-},{"./app-core/index":3,"./app-fangraphs/index":7,"./app-notes/index":11,"angular":18,"jquery":19}],14:[function(require,module,exports){
+},{"./app-core/index":3,"./app-fangraphs/index":7,"./app-notes/index":11,"angular":19,"jquery":20}],14:[function(require,module,exports){
 /**
  * @license AngularJS v1.5.5
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -858,6 +878,113 @@ require('./angular-cookies');
 module.exports = 'ngCookies';
 
 },{"./angular-cookies":14}],16:[function(require,module,exports){
+/*! angular-csv-import - v0.0.18 - 2015-09-04
+* Copyright (c) 2015 ; Licensed  */
+'use strict';
+
+var csvImport = angular.module('ngCsvImport', []);
+
+csvImport.directive('ngCsvImport', function() {
+	return {
+		restrict: 'E',
+		transclude: true,
+		replace: true,
+		scope:{
+			content:'=?',
+			header: '=?',
+			headerVisible: '=?',
+			separator: '=?',
+			separatorVisible: '=?',
+			result: '=?',
+			encoding: '=?',
+			encodingVisible: '=?'
+		},
+		template: '<div><div ng-show="headerVisible"><div class="label">Header</div><input type="checkbox" ng-model="header"></div>'+
+			'<div ng-show="encoding && encodingVisible"><div class="label">Encoding</div><span>{{encoding}}</span></div>'+
+			'<div ng-show="separator && separatorVisible"><div class="label">Seperator</div><span><input class="separator-input" type="text" ng-change="changeSeparator" ng-model="separator"><span></div>'+
+			'<div><input class="btn cta gray" type="file"/></div></div>',
+		link: function(scope, element) {
+			scope.separatorVisible = scope.separatorVisible || false;
+			scope.headerVisible = scope.headerVisible || false;
+
+			angular.element(element[0].querySelector('.separator-input')).on('keyup', function(e) {
+				if ( scope.content != null ) {
+					var content = {
+						csv: scope.content,
+						header: scope.header,
+						separator: e.target.value,
+						encoding: scope.encoding
+					};
+					scope.result = csvToJSON(content);
+					scope.$apply();
+				}
+			});
+
+			element.on('change', function(onChangeEvent) {
+				var reader = new FileReader();
+				scope.filename = onChangeEvent.target.files[0].name;
+				reader.onload = function(onLoadEvent) {
+					scope.$apply(function() {
+						var content = {
+							csv: onLoadEvent.target.result.replace(/\r\n|\r/g,'\n'),
+							header: scope.header,
+							separator: scope.separator
+						};
+						scope.content = content.csv;
+						scope.result = csvToJSON(content);
+						scope.result.filename = scope.filename;
+					});
+				};
+
+				if ( (onChangeEvent.target.type === "file") && (onChangeEvent.target.files != null || onChangeEvent.srcElement.files != null) )  {
+					reader.readAsText((onChangeEvent.srcElement || onChangeEvent.target).files[0], scope.encoding);
+				} else {
+					if ( scope.content != null ) {
+						var content = {
+							csv: scope.content,
+							header: !scope.header,
+							separator: scope.separator
+						};
+						scope.result = csvToJSON(content);
+					}
+				}
+			});
+
+			var csvToJSON = function(content) {
+				var lines=content.csv.split('\n');
+				var result = [];
+				var start = 0;
+				var columnCount = lines[0].split(content.separator).length;
+
+				var headers = [];
+				if (content.header) {
+					headers=lines[0].split(content.separator);
+					start = 1;
+				}
+
+				for (var i=start; i<lines.length; i++) {
+					var obj = {};
+					var currentline=lines[i].split(new RegExp(content.separator+'(?![^"]*"(?:(?:[^"]*"){2})*[^"]*$)'));
+					if ( currentline.length === columnCount ) {
+						if (content.header) {
+							for (var j=0; j<headers.length; j++) {
+								obj[headers[j]] = currentline[j];
+							}
+						} else {
+							for (var k=0; k<currentline.length; k++) {
+								obj[k] = currentline[k];
+							}
+						}
+						result.push(obj);
+					}
+				}
+				return result;
+			};
+		}
+	};
+});
+
+},{}],17:[function(require,module,exports){
 /**
  * State-based routing for AngularJS
  * @version v0.2.18
@@ -5397,7 +5524,7 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 /**
  * @license AngularJS v1.5.5
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -36266,11 +36393,11 @@ $provide.value("$locale", {
 })(window);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":17}],19:[function(require,module,exports){
+},{"./angular":18}],20:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.2.3
  * http://jquery.com/
