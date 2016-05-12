@@ -1,7 +1,10 @@
 <h2>Load players and Ids</h2>
 
 
-<form class="import-file-form" ng-submit="vm.loadPlayers()">
+<form class="import-file-form" ng-submit="vm.loadPlayers(position)">
+ <select ng-model="position">
+  <option ng-repeat="position in vm.positions">{{ position }}</option>
+ </select>
  <ng-csv-import id="playerImport" content="csv.content"
     header="csv.header" 
     separator="csv.separator"
@@ -10,6 +13,14 @@
   <button>Submit</button>
 </form>
 
+
+
+<div ng-show="vm.dataArray.length > 1">
+  <p>Would you like to load these {{ vm.dataArray.length }} players to the database?</p>
+  <button class="btn btn-success" ng-click="vm.submitData()">
+    Add to database
+  </button>
+</div>
 
 
 
