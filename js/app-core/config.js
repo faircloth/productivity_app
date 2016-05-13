@@ -1,7 +1,7 @@
 let config = function($urlRouterProvider, $stateProvider) {
   
   // if route not detected, send to root
-  // $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/');
 
   // front-end routes
   $stateProvider

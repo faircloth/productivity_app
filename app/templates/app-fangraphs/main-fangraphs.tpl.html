@@ -47,12 +47,16 @@
     <tr class="header_row">
       <td>Year</td>
       <td>Team</td>
+      <td>AVG</td>
+      <td>BABIP</td>
       <td>K/9</td>
       <td>FIP</td>
     </tr>
     <tr class="data_row with_total" ng-repeat="row in vm.rows">
       <td>{{ row['year'] }}</td>
       <td>{{ row['team'] }}</td>
+      <td>{{ row['AVG'] }}</td>
+      <td>{{ row['BABIP'] }}</td>
       <td>{{ row['K/9']  }}</td>
       <td>{{ row['FIP']  }}</td>
     </tr>

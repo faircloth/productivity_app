@@ -52,7 +52,7 @@ router.post('/scrape', function(req, res){
 // function creates data for fangraphs scrape
 function getData (headers, html) {
   
-  let rows = html('#SeasonStats1_dgSeason2').children('table').children('tbody').children('.grid_minors_show, .rgAltRow, .grid_projectionsin_show, .grid_total');  
+  let rows = html('#SeasonStats1_dgSeason2').children('table').children('tbody').children('.grid_minors_show, .rgAltRow, .grid_projectionsin_show, .grid_total, .rgRow');  
   let response = [];
 
   for (var i = 0; i < rows.length; i++) {

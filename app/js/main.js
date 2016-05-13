@@ -7,7 +7,7 @@ Object.defineProperty(exports, '__esModule', {
 var config = function config($urlRouterProvider, $stateProvider) {
 
   // if route not detected, send to root
-  // $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/');
 
   // front-end routes
   $stateProvider.state('root', {
