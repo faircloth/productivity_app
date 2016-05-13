@@ -5885,8 +5885,23 @@ form {
     margin: 4px 0px;
     margin-right: 6px; }
 
-form.choose div.form-group div.input-group select {
-  width: 400px; }
+form.choose {
+  display: inline-block;
+  width: 45%; }
+  form.choose div.form-group div.input-group select {
+    width: 400px; }
+
+div.observations {
+  display: inline-block;
+  margin-left: 4%;
+  width: 45%;
+  background-color: #E4E4E3;
+  border: 1px solid grey;
+  padding: 8px; }
+  div.observations h4 {
+    text-align: center;
+    border-bottom: 2px solid grey;
+    padding-bottom: 6px; }
 
 .navbar-fixed-top {
   background-color: #3B3D3F;

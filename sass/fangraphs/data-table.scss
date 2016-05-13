@@ -11,6 +11,10 @@ div.table_container {
   
     tr {
       padding: 10px;
+
+      // td.over {
+      //   background-color: lightgreen;
+      // }
     }
 
     input.edit {
@@ -27,6 +31,7 @@ div.table_container {
         font-size: 1.1em;
 
       }
+
 
     }
 
@@ -78,11 +83,29 @@ form {
 }
 
 form.choose {
+  display: inline-block;
+  width: 45%;
   div.form-group {
     div.input-group {
       select { 
         width: 400px;
       }
     }
+  }
+}
+
+div.observations {
+  display: inline-block;
+  margin-left: 4%;
+  width: 45%;
+  background-color: #E4E4E3;
+  border: 1px solid grey;
+  // border-radius: 20px;
+  padding: 8px;
+
+  h4 {
+    text-align: center;
+    border-bottom: 2px solid grey;
+    padding-bottom: 6px;
   }
 }

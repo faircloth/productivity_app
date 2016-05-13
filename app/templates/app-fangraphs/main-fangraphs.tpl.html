@@ -37,6 +37,13 @@
 
 
 
+<div ng-show="vm.loaded" class="observations">
+  <h4>Observations:</h4>
+  <ul>
+    <li>{{ player.lastName }}'s FIP is higher than his ERA</li>
+  </ul>
+</div>
+
 
 
 
@@ -58,7 +65,8 @@
       <td>{{ row['year'] }}</td>
       <td>{{ row['team'] }}</td>
       <td>{{ row['AVG'] }}</td>
-      <td class="{{ row['BABIP'] }} > .3">{{ row['BABIP'] }}</td>
+      <td ng-show="{{ row['BABIP'] > .3 }}" class="over">{{ row['BABIP'] }}</td>
+      <td ng-show="!{{ row['BABIP'] > .3 }}">{{ row['BABIP'] }}</td>
       <td>{{ row['K/9']  }}</td>
       <td>{{ row['FIP']  }}</td>
       <td>{{ row['BB/9']  }}</td>
