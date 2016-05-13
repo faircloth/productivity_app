@@ -31,7 +31,7 @@ div.table_container {
     }
 
     tr.with_total:last-child {
-        background-color: darkblue;
+        background-color: #3B3D3F;
         color: white;
         font-weight: bold;
         font-size: 1.1em;
@@ -39,6 +39,14 @@ div.table_container {
 
     tr.no_total:last-child {
       border-bottom: 1px dashed black;
+    }
+
+    tr.ZiPS {
+      border-top: 2px solid black;
+    }
+
+    tr.ZiPS, tr.Steamer, tr.Depth {
+      background-color: lightblue;
     }
 
   }

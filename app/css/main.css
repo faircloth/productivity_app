@@ -5859,12 +5859,16 @@ div.table_container {
         font-weight: bold;
         font-size: 1.1em; }
     div.table_container table tr.with_total:last-child {
-      background-color: darkblue;
+      background-color: #3B3D3F;
       color: white;
       font-weight: bold;
       font-size: 1.1em; }
     div.table_container table tr.no_total:last-child {
       border-bottom: 1px dashed black; }
+    div.table_container table tr.ZiPS {
+      border-top: 2px solid black; }
+    div.table_container table tr.ZiPS, div.table_container table tr.Steamer, div.table_container table tr.Depth {
+      background-color: lightblue; }
 
 form {
   margin: 10px 0px; }

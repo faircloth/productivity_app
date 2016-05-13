@@ -51,14 +51,18 @@
       <td>BABIP</td>
       <td>K/9</td>
       <td>FIP</td>
+      <td>BB/9</td>
+      <td>LOB%</td>
     </tr>
-    <tr class="data_row with_total" ng-repeat="row in vm.rows">
+    <tr class="data_row with_total {{ row['team'] }}" ng-repeat="row in vm.rows">
       <td>{{ row['year'] }}</td>
       <td>{{ row['team'] }}</td>
       <td>{{ row['AVG'] }}</td>
-      <td>{{ row['BABIP'] }}</td>
+      <td class="{{ row['BABIP'] }} > .3">{{ row['BABIP'] }}</td>
       <td>{{ row['K/9']  }}</td>
       <td>{{ row['FIP']  }}</td>
+      <td>{{ row['BB/9']  }}</td>
+      <td>{{ row['LOB%']  }}</td>
     </tr>
   </table>
 </div>

@@ -52,7 +52,7 @@ router.post('/scrape', function(req, res){
 // function creates data for fangraphs scrape
 function getData (headers, html) {
   
-  let rows = html('#SeasonStats1_dgSeason2').children('table').children('tbody').children('.grid_minors_show, .rgAltRow, .grid_projectionsin_show, .grid_total, .rgRow').not('.grid_projections_hide, .grid_postseason, .grid_average, .grid_postseason, .grid_postseason_total');  
+  let rows = html('#SeasonStats1_dgSeason2').children('table').children('tbody').children('.grid_minors_show, .rgAltRow, .grid_projectionsin_show, .grid_total, .rgRow').not('.grid_projections_hide, .grid_postseason, .grid_average, .grid_postseason, .grid_postseason_total, .grid_multi');  
 
   // TODO: isolate and remove 'averages'
 
