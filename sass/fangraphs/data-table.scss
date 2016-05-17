@@ -46,6 +46,10 @@ div.table_container {
       border-bottom: 1px dashed black;
     }
 
+    tr.2016 {
+      background-color: #256DAA;
+    }
+
     tr.ZiPS {
       border-top: 2px solid black;
     }
@@ -98,14 +102,15 @@ div.observations {
   display: inline-block;
   margin-left: 4%;
   width: 45%;
-  background-color: #E4E4E3;
+  background-color: #256DAA;
   border: 1px solid grey;
   // border-radius: 20px;
   padding: 8px;
+  color: white;
 
   h4 {
     text-align: center;
-    border-bottom: 2px solid grey;
+    border-bottom: 2px solid white;
     padding-bottom: 6px;
   }
 }

@@ -11,6 +11,12 @@ body {
   padding: 30px;
 }
 
+img.homepage {
+  display: block;
+  width: 100%;
+  max-width: 900px;
+}
+
 
 // folder imports
 @import './notes/index.scss';
